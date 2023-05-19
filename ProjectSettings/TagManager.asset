@@ -8,6 +8,7 @@ TagManager:
   - White
   - Queen
   - Striker
+  - PieceColliderChecker
   layers:
   - Default
   - TransparentFX

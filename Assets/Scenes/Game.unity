@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 763327317}
   m_Layer: 0
   m_Name: PieceColliderChecker
-  m_TagString: Untagged
+  m_TagString: PieceColliderChecker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1464,7 +1464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763327316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.71, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1506,8 +1506,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8}
-  m_SizeDelta: {x: 31.9, y: 16.7}
+  m_AnchoredPosition: {x: 0, y: 15.4}
+  m_SizeDelta: {x: 86.2, y: 21.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &778143795
 MonoBehaviour:
@@ -3582,8 +3582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8}
-  m_SizeDelta: {x: 32, y: 15}
+  m_AnchoredPosition: {x: 0, y: -12.3}
+  m_SizeDelta: {x: 58.8, y: 22.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2024537551
 MonoBehaviour:
@@ -3740,8 +3740,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 50, y: 40}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 100, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2105739260
 MonoBehaviour:
@@ -3872,6 +3872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Black
       objectReference: {fileID: 0}
+    - target: {fileID: 777833307930426712, guid: d88292baaf55b7c429bad9faa98102da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7599543550789004520, guid: d88292baaf55b7c429bad9faa98102da, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -3928,6 +3932,10 @@ PrefabInstance:
     - target: {fileID: 239268850913350301, guid: effb1295fd7b4014ba2dc08825cfa584, type: 3}
       propertyPath: m_Name
       value: White
+      objectReference: {fileID: 0}
+    - target: {fileID: 239268850913350301, guid: effb1295fd7b4014ba2dc08825cfa584, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6573997006015245974, guid: effb1295fd7b4014ba2dc08825cfa584, type: 3}
       propertyPath: m_RootOrder

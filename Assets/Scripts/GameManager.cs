@@ -100,8 +100,8 @@ public class GameManager : MonoBehaviour
         queenPiece = GameObject.FindGameObjectWithTag("Queen");
 
         playerPiece = (Piece)((Random.Range(1, 10)) % 2);
-        Debug.Log(playerPiece);
-        if(playerPiece == Piece.White)
+        //Debug.Log(playerPiece);
+        if (playerPiece == Piece.White)
         {
             playerImage.GetComponent<Image>().sprite = whiteSprite;
             cpuImage.GetComponent<Image>().sprite = blackSprite;
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
             sliderXalpha = Random.Range(0.3f, 0.7f);
             finalSliderXalpha = Random.Range(0.00001f, 1);
         }
-         
+        
     }
 
     // Update is called once per frame
@@ -305,7 +305,7 @@ public class GameManager : MonoBehaviour
             winBy = playerPiece == Piece.White ? PlayerSide.Player : PlayerSide.CPU;
             GameWin();
 
-        }       
+        }
         else
         {
             StartCoroutine(WaitThenSpwan(Piece.White));
@@ -329,10 +329,10 @@ public class GameManager : MonoBehaviour
         else if (wasQueenAdded)
         {
             black++;
-            queen++;           
+            queen++;
             winBy = playerPiece == Piece.White ? PlayerSide.CPU : PlayerSide.Player;
             GameWin();
-        }        
+        }
         else
         {
             StartCoroutine(WaitThenSpwan(Piece.Black));
@@ -541,7 +541,7 @@ public class GameManager : MonoBehaviour
                     GameObject piece = FindInactivePiece(_piece);
                     if (piece != null)
                     {
-                        piece.transform.localPosition = FindSpawnLocationAtCenter();
+                        piece.transform.position = FindSpawnLocationAtCenter();
                         piece.SetActive(true);
                     }
                     break;
@@ -552,7 +552,7 @@ public class GameManager : MonoBehaviour
                     GameObject piece = FindInactivePiece(_piece);
                     if (piece != null)
                     {
-                        piece.transform.localPosition = FindSpawnLocationAtCenter();
+                        piece.transform.position = FindSpawnLocationAtCenter();
                         piece.SetActive(true);
                     }
                     break;
@@ -560,14 +560,14 @@ public class GameManager : MonoBehaviour
 
             case Piece.Queen:
                 {
-                    queenPiece.transform.localPosition = FindSpawnLocationAtCenter();
+                    queenPiece.transform.position = FindSpawnLocationAtCenter();
                     queenPiece.SetActive(true);
                     break;
                 }
 
             case Piece.Sriker:
                 {
-                    striker.transform.localPosition = new Vector3(0, (playerSide == PlayerSide.Player ? -3.97f : 3.97f), 0);
+                    striker.transform.position = new Vector3(0, (playerSide == PlayerSide.Player ? -3.97f : 3.97f), 0);
                     striker.SetActive(true);
                     break;
                 }
@@ -611,55 +611,75 @@ public class GameManager : MonoBehaviour
         pieceColliderChecker.SetActive(true);
 
         pieceColliderChecker.transform.position = Vector3.zero;
-
         pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
+        Debug.Log(resultList.Count);
 
-        if (resultList.Count != 0)
+        if (resultList.Count == 0) 
         {
             resultList.Clear();
-            for (int i = 1; i < 10; i++)
-            {
-                //Check Left
-                pieceColliderChecker.transform.localPosition = output = new Vector3(i * -0.56f, 0, 0);
-                pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
-                if (resultList.Count == 0)
-                {
-                    resultList.Clear();
-                    return output;
-                }
-                resultList.Clear();
-
-                //Check Right
-                pieceColliderChecker.transform.localPosition = output = new Vector3(i * 0.56f, 0, 0);
-                pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
-                if (resultList.Count == 0)
-                {
-                    resultList.Clear();
-                    return output;
-                }
-                resultList.Clear();
-
-                //Check Top
-                pieceColliderChecker.transform.localPosition = output = new Vector3(0, i * 0.56f, 0);
-                pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
-                if (resultList.Count == 0)
-                {
-                    resultList.Clear();
-                    return output;
-                }
-                resultList.Clear();
-
-                //Check Bottom
-                pieceColliderChecker.transform.localPosition = output = new Vector3(0, i * -0.56f, 0);
-                pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
-                if (resultList.Count == 0)
-                {
-                    resultList.Clear();
-                    return output;
-                }
-                resultList.Clear();
-            }
+            pieceColliderChecker.SetActive(false);
+            return output;
         }
+
+
+        pieceColliderChecker.SetActive(false);
+        resultList.Clear();
+
+        for (int i = 1; i < 10; i++)
+        {
+            //Check Left            
+            pieceColliderChecker.transform.position = output = new Vector3(i * -0.56f, 0, 0);
+            pieceColliderChecker.SetActive(true);
+            pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
+            if (resultList.Count == 0)
+            {
+                resultList.Clear();
+                pieceColliderChecker.SetActive(false);
+                return output;
+            }
+            pieceColliderChecker.SetActive(false);
+            resultList.Clear();
+
+            //Check Right
+            pieceColliderChecker.transform.position = output = new Vector3(i * 0.56f, 0, 0);
+            pieceColliderChecker.SetActive(true);
+            pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
+            if (resultList.Count == 0)
+            {
+                resultList.Clear();
+                pieceColliderChecker.SetActive(false);
+                return output;
+            }
+            pieceColliderChecker.SetActive(false);
+            resultList.Clear();
+
+            //Check Top
+            pieceColliderChecker.transform.position = output = new Vector3(0, i * 0.56f, 0);
+            pieceColliderChecker.SetActive(true);
+            pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
+            if (resultList.Count == 0)
+            {
+                resultList.Clear();
+                pieceColliderChecker.SetActive(false);
+                return output;
+            }
+            pieceColliderChecker.SetActive(false);
+            resultList.Clear();
+
+            //Check Bottom
+            pieceColliderChecker.transform.position = output = new Vector3(0, i * -0.56f, 0);
+            pieceColliderChecker.SetActive(true);
+            pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
+            if (resultList.Count == 0)
+            {
+                resultList.Clear();
+                pieceColliderChecker.SetActive(false);
+                return output;
+            }
+            pieceColliderChecker.SetActive(false);
+            resultList.Clear();
+        }
+
 
         resultList.Clear();
         pieceColliderChecker.SetActive(false);
