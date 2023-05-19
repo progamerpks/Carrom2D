@@ -612,7 +612,7 @@ public class GameManager : MonoBehaviour
 
         pieceColliderChecker.transform.position = Vector3.zero;
         pieceColliderChecker.GetComponent<Collider2D>().OverlapCollider(filter, resultList);
-        Debug.Log(resultList.Count);
+        
 
         if (resultList.Count == 0) 
         {
