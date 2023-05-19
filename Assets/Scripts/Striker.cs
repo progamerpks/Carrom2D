@@ -23,23 +23,11 @@ public class Striker : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameManager.instance.isAiming)
-        {
-
-        }
-    }
-
     
 
     private void OnMouseDown()
-    {
-        //Debug.Log("Clicked");
+    {        
         if (!GameManager.instance.isAiming) { return; }
 
         startPos = transform.position;
